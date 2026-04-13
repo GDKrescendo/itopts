@@ -1,0 +1,40 @@
+---
+import Card from '../ui/Card.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import Button from '../ui/Button.astro';
+import IconWrapper from '../icons/IconWrapper';
+import { serviceOverview } from '../../data/services';
+---
+
+<section class="section-padding bg-bg-secondary" id="services-overview">
+  <div class="container-site">
+    <SectionHeading
+      overline="What We Do"
+      title="Enterprise-Grade Solutions for Growing Businesses"
+      description="Three core services. One trusted partner. Complete protection and optimization for your entire technology stack."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-14 services-grid">
+      {serviceOverview.map((service, i) => (
+        <Card borderAccent={i === 0 ? 'cyan' : i === 1 ? 'indigo' : 'cyan'} class="flex flex-col h-full">
+          <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-accent-cyan/10 mb-5">
+            <IconWrapper client:load name={service.icon} size={24} className="text-[var(--color-accent-cyan)]" />
+          </div>
+          <span class="text-xs font-semibold uppercase tracking-[0.15em] text-accent-cyan mb-1">{service.tagline}</span>
+          <h3 class="font-heading font-bold text-xl text-white mb-3">{service.title}</h3>
+          <p class="text-text-muted text-sm leading-relaxed flex-1">{service.description}</p>
+          <div class="mt-6">
+            <Button variant="ghost" size="sm" href={service.href}>
+              Learn More →
+            </Button>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { staggerCards } from '../../scripts/scroll-animations';
+  staggerCards('#services-overview .services-grid', ':scope > div');
+</script>

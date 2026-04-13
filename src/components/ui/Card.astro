@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+  hover?: boolean;
+  borderAccent?: 'cyan' | 'indigo' | 'none';
+}
+
+const {
+  class: className = '',
+  hover = true,
+  borderAccent = 'cyan',
+} = Astro.props;
+
+const accentBorder = {
+  cyan: 'hover:border-l-accent-cyan hover:shadow-[0_0_24px_rgba(0,212,255,0.06)]',
+  indigo: 'hover:border-l-accent-indigo hover:shadow-[0_0_24px_rgba(99,102,241,0.06)]',
+  none: '',
+};
+---
+
+<div
+  class:list={[
+    'bg-bg-card rounded-[var(--radius-card)] border border-border p-6 transition-all duration-300',
+    hover && 'border-l-2 border-l-transparent',
+    hover && accentBorder[borderAccent],
+    className,
+  ]}
+>
+  <slot />
+</div>

@@ -1,0 +1,145 @@
+---
+import Logo from '../icons/Logo.astro';
+import { navLinks } from '../../data/navigation';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="container-site">
+    <nav class="flex items-center justify-between h-18 lg:h-20">
+      <Logo />
+
+      <!-- Desktop nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors hover:text-accent-cyan',
+              currentPath === link.href || currentPath === link.href + '/'
+                ? 'text-accent-cyan'
+                : 'text-text-muted',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-md bg-accent-cyan text-bg-primary hover:bg-accent-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,212,255,0.15)]"
+        >
+          Get Started
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden relative w-10 h-10 flex items-center justify-center"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <div class="space-y-1.5" id="hamburger-icon">
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="block w-4 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+        </div>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 top-0 bg-bg-primary/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
+  >
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class:list={[
+          'text-2xl font-heading font-semibold transition-colors hover:text-accent-cyan',
+          currentPath === link.href || currentPath === link.href + '/'
+            ? 'text-accent-cyan'
+            : 'text-white',
+        ]}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      href="/contact"
+      class="mt-4 inline-flex items-center justify-center px-8 py-3 text-base font-semibold rounded-md bg-accent-cyan text-bg-primary hover:bg-accent-cyan/90 transition-colors"
+    >
+      Get Started
+    </a>
+  </div>
+</header>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  let isOpen = false;
+
+  function toggleMenu() {
+    isOpen = !isOpen;
+    menuBtn?.setAttribute('aria-expanded', String(isOpen));
+
+    if (mobileMenu) {
+      if (isOpen) {
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+    }
+
+    if (hamburgerIcon) {
+      const spans = hamburgerIcon.querySelectorAll('span');
+      if (isOpen) {
+        spans[0].style.transform = 'rotate(45deg) translate(3px, 3px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(3px, -3px)';
+        spans[2].style.width = '1.5rem';
+      } else {
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = '';
+        spans[2].style.width = '1rem';
+      }
+    }
+  }
+
+  menuBtn?.addEventListener('click', toggleMenu);
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (isOpen) toggleMenu();
+    });
+  });
+
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    if (navbar) {
+      if (scrollY > 50) {
+        navbar.style.backgroundColor = 'rgba(10, 10, 15, 0.85)';
+        navbar.style.backdropFilter = 'blur(16px)';
+        navbar.style.borderBottom = '1px solid rgba(30, 30, 46, 0.5)';
+      } else {
+        navbar.style.backgroundColor = 'transparent';
+        navbar.style.backdropFilter = 'none';
+        navbar.style.borderBottom = '1px solid transparent';
+      }
+    }
+
+    lastScroll = scrollY;
+  });
+</script>

@@ -1,0 +1,29 @@
+---
+interface Props {
+  overline?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const {
+  overline,
+  title,
+  description,
+  align = 'center',
+  class: className = '',
+} = Astro.props;
+---
+
+<div class:list={[align === 'center' ? 'text-center' : 'text-left', 'max-w-2xl', align === 'center' && 'mx-auto', className]}>
+  {overline && (
+    <span class="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-accent-cyan mb-3">
+      {overline}
+    </span>
+  )}
+  <h2 class="font-heading font-bold">{title}</h2>
+  {description && (
+    <p class="mt-4 text-text-muted text-lg leading-relaxed">{description}</p>
+  )}
+</div>

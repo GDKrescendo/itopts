@@ -1,0 +1,56 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import IconWrapper from '../icons/IconWrapper';
+
+const steps = [
+  {
+    number: '01',
+    icon: 'scan-search' as const,
+    title: 'We Assess',
+    description: 'Free IT audit of your environment. We identify vulnerabilities, inefficiencies, and opportunities for automation.',
+  },
+  {
+    number: '02',
+    icon: 'shield' as const,
+    title: 'We Protect',
+    description: 'Deploy monitoring, security layers, and automation tools tailored to your business needs and compliance requirements.',
+  },
+  {
+    number: '03',
+    icon: 'trending-up' as const,
+    title: 'We Optimize',
+    description: 'Continuous improvement through proactive monitoring, regular reviews, and transparent reporting on your IT health.',
+  },
+];
+---
+
+<section class="section-padding bg-bg-secondary" id="how-it-works">
+  <div class="container-site">
+    <SectionHeading
+      overline="How It Works"
+      title="Three Steps to IT Peace of Mind"
+      description="Getting started with ITOPTS is simple. We handle the complexity so you don't have to."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-14 relative steps-grid">
+      <!-- Connector line (desktop only) -->
+      <div class="hidden md:block absolute top-16 left-[16.6%] right-[16.6%] h-px bg-gradient-to-r from-accent-cyan/30 via-accent-indigo/30 to-accent-cyan/30"></div>
+
+      {steps.map((step) => (
+        <div class="relative text-center">
+          <div class="w-14 h-14 flex items-center justify-center rounded-full border-2 border-accent-cyan/30 bg-bg-primary mx-auto mb-6 relative z-10">
+            <IconWrapper client:load name={step.icon} size={24} className="text-[var(--color-accent-cyan)]" />
+          </div>
+          <span class="inline-block text-xs font-mono font-medium text-accent-cyan/60 mb-2">{step.number}</span>
+          <h3 class="font-heading font-bold text-xl text-white mb-3">{step.title}</h3>
+          <p class="text-text-muted text-sm leading-relaxed max-w-xs mx-auto">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { staggerCards } from '../../scripts/scroll-animations';
+  staggerCards('#how-it-works .steps-grid', ':scope > div');
+</script>

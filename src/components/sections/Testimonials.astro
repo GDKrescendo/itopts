@@ -1,0 +1,40 @@
+---
+import Card from '../ui/Card.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { testimonials } from '../../data/testimonials';
+---
+
+<section class="section-padding" id="testimonials-section">
+  <div class="container-site">
+    <SectionHeading
+      overline="Client Stories"
+      title="Trusted by Businesses Across South Florida"
+      description="Don't just take our word for it. Here's what our clients have to say."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-14 testimonials-grid">
+      {testimonials.map((t) => (
+        <Card borderAccent="indigo" class="flex flex-col">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-accent-indigo/30 mb-4">
+            <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" fill="currentColor"/>
+          </svg>
+          <p class="text-text-body text-sm leading-relaxed flex-1">"{t.quote}"</p>
+          <div class="flex items-center gap-3 mt-6 pt-5 border-t border-border">
+            <div class="w-10 h-10 rounded-full bg-accent-indigo/20 flex items-center justify-center text-xs font-bold text-accent-indigo">
+              {t.initials}
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">{t.name}</p>
+              <p class="text-xs text-text-muted">{t.role}, {t.company}</p>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { staggerCards } from '../../scripts/scroll-animations';
+  staggerCards('#testimonials-section .testimonials-grid', ':scope > div');
+</script>

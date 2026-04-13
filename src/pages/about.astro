@@ -1,0 +1,165 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import IconWrapper from '../components/icons/IconWrapper';
+import { founders } from '../data/team';
+import { companyValues } from '../data/values';
+---
+
+<PageLayout title="About" description="Learn about ITOPTS — South Florida's trusted MSP, AI automation, and cybersecurity partner.">
+  <!-- Hero -->
+  <section class="pt-32 lg:pt-40 pb-16 lg:pb-20 bg-bg-primary">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <span class="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-accent-cyan mb-3">About ITOPTS</span>
+        <h1 class="font-heading font-bold">We Believe Every Business Deserves <span class="text-accent-cyan">Enterprise-Grade</span> Protection</h1>
+        <p class="mt-6 text-lg text-text-muted leading-relaxed">
+          ITOPTS was founded on a simple idea: growing businesses shouldn't have to choose between affordability and world-class IT. We bring Fortune 500 tools, talent, and strategy to companies that need it most.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="section-padding bg-bg-secondary" id="mission">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-[0.15em] text-accent-cyan mb-3 block">Our Mission</span>
+          <h2 class="font-heading font-bold">Proactive, Not Reactive</h2>
+          <p class="mt-4 text-text-muted text-lg leading-relaxed">
+            Most IT companies wait for things to break. We don't. Our AI-first approach means we're identifying and resolving issues before they impact your business. Combine that with transparent pricing and no long-term contracts, and you get an IT partner that actually works for you.
+          </p>
+          <ul class="mt-8 space-y-4">
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-accent-cyan/10 flex items-center justify-center shrink-0 mt-0.5">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-cyan)" stroke-width="3"><polyline points="20,6 9,17 4,12"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-white">AI-First Approach</p>
+                <p class="text-sm text-text-muted">We leverage AI for threat detection, automation, and optimization — not just buzzwords.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-accent-cyan/10 flex items-center justify-center shrink-0 mt-0.5">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-cyan)" stroke-width="3"><polyline points="20,6 9,17 4,12"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-white">Transparent Pricing</p>
+                <p class="text-sm text-text-muted">No hidden fees, no surprise invoices. You know exactly what you're paying for, always.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-accent-cyan/10 flex items-center justify-center shrink-0 mt-0.5">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-cyan)" stroke-width="3"><polyline points="20,6 9,17 4,12"/></svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-white">No Long-Term Contracts</p>
+                <p class="text-sm text-text-muted">We earn your business every month. Stay because we deliver, not because you're locked in.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="relative">
+          <div class="aspect-square rounded-2xl bg-bg-card border border-border flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent-cyan/5 to-accent-indigo/5"></div>
+            <div class="relative text-center p-8">
+              <div class="text-6xl lg:text-7xl font-heading font-bold text-white/10">IT</div>
+              <div class="text-6xl lg:text-7xl font-heading font-bold text-accent-cyan/20 -mt-4">OPTS</div>
+              <p class="mt-6 text-sm text-text-muted">Protecting South Florida businesses since day one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founders -->
+  <section class="section-padding bg-bg-primary" id="founders">
+    <div class="container-site">
+      <div class="text-center mb-14">
+        <span class="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-accent-cyan mb-3">Leadership</span>
+        <h2 class="font-heading font-bold">Meet the Founders</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto founders-grid">
+        {founders.map((founder) => (
+          <div class="bg-bg-card rounded-[var(--radius-card)] border border-border p-8 text-center transition-all duration-300 hover:border-accent-cyan/20 hover:shadow-[0_0_24px_rgba(0,212,255,0.06)]">
+            <!-- Photo -->
+            <div class="w-36 h-36 rounded-lg overflow-hidden mx-auto mb-6 border-2 border-border">
+              <img
+                src={founder.photo}
+                alt={founder.name}
+                class="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-500"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Name & Title -->
+            <h3 class="font-heading font-bold text-2xl text-white">{founder.name}</h3>
+            <p class="text-accent-cyan text-base font-semibold mt-1">{founder.role}</p>
+            <p class="text-text-muted text-sm mt-1">{founder.tagline}</p>
+
+            <!-- Bio -->
+            <p class="text-text-muted text-sm leading-relaxed mt-5">{founder.bio}</p>
+
+            <!-- Key Expertise -->
+            <div class="mt-6">
+              <p class="text-sm font-semibold text-white mb-3">Key Expertise:</p>
+              <div class="flex flex-wrap justify-center gap-2">
+                {founder.expertise.map((skill) => (
+                  <span class="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full border border-accent-cyan/20 bg-accent-cyan/5 text-accent-cyan">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section-padding bg-bg-secondary" id="values">
+    <div class="container-site">
+      <div class="text-center mb-14">
+        <span class="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-accent-cyan mb-3">Our Values</span>
+        <h2 class="font-heading font-bold">What Drives Us</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 values-grid">
+        {companyValues.map((value, i) => (
+          <Card borderAccent={i % 2 === 0 ? 'cyan' : 'indigo'}>
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-accent-cyan/10 mb-4">
+              <IconWrapper client:load name={value.icon} size={20} className="text-[var(--color-accent-cyan)]" />
+            </div>
+            <h3 class="font-heading font-semibold text-lg text-white mb-2">{value.title}</h3>
+            <p class="text-text-muted text-sm leading-relaxed">{value.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-bg-primary">
+    <div class="container-site text-center">
+      <h2 class="font-heading font-bold">Ready to Work With a Team That Cares?</h2>
+      <p class="mt-4 text-text-muted text-lg max-w-lg mx-auto">
+        Let's talk about how ITOPTS can become your trusted technology partner.
+      </p>
+      <div class="mt-8">
+        <Button variant="primary" size="lg" href="/contact">Get in Touch</Button>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  import { staggerCards, fadeUp } from '../scripts/scroll-animations';
+  fadeUp('#mission');
+  staggerCards('#founders .founders-grid', ':scope > div');
+  staggerCards('#values .values-grid', ':scope > div');
+</script>
