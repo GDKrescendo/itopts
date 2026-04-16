@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { siteConfig } from '../data/site';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title?: string;
@@ -48,5 +49,6 @@ const pageTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
   </head>
   <body class="min-h-screen bg-bg-primary text-text-body antialiased">
     <slot />
+    <SpeedInsights />
   </body>
 </html>
