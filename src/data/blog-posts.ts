@@ -5,6 +5,7 @@ export interface BlogPost {
   date: string;
   readTime: string;
   slug: string;
+  image: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -15,6 +16,7 @@ export const blogPosts: BlogPost[] = [
     date: 'March 28, 2026',
     readTime: '6 min read',
     slug: '5-cybersecurity-mistakes-smbs',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=340&fit=crop',
   },
   {
     title: 'How AI Automation Saved Our Client 20 Hours Per Week',
@@ -23,6 +25,7 @@ export const blogPosts: BlogPost[] = [
     date: 'March 15, 2026',
     readTime: '8 min read',
     slug: 'ai-automation-case-study',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=340&fit=crop',
   },
   {
     title: 'Why Your Business Needs an MSP in 2026',
@@ -31,5 +34,6 @@ export const blogPosts: BlogPost[] = [
     date: 'March 2, 2026',
     readTime: '5 min read',
     slug: 'why-your-business-needs-msp-2026',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=340&fit=crop',
   },
 ];

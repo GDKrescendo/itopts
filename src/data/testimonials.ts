@@ -4,6 +4,7 @@ export interface Testimonial {
   role: string;
   company: string;
   initials: string;
+  avatar: string;
 }
 
 export const testimonials: Testimonial[] = [
@@ -13,6 +14,7 @@ export const testimonials: Testimonial[] = [
     role: 'Operations Director',
     company: 'Coastal Legal Group',
     initials: 'SM',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face',
   },
   {
     quote: "As a healthcare practice, HIPAA compliance was our biggest concern. ITOPTS not only secured our systems but made the entire compliance process seamless. Their team feels like an extension of ours.",
@@ -20,6 +22,7 @@ export const testimonials: Testimonial[] = [
     role: 'Managing Partner',
     company: 'SunCoast Medical Associates',
     initials: 'MR',
+    avatar: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&h=80&fit=crop&crop=face',
   },
   {
     quote: "We were hit with a phishing attack before ITOPTS. Since switching, zero incidents in 18 months. Their proactive monitoring and employee training program have been game-changers.",
@@ -27,5 +30,6 @@ export const testimonials: Testimonial[] = [
     role: 'CEO',
     company: 'Pinnacle Financial Advisors',
     initials: 'JC',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face',
   },
 ];

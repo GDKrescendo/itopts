@@ -11,6 +11,13 @@ export function HeroSpline() {
         fill="var(--color-accent-cyan)"
       />
 
+      {/* Fallback background for no-WebGL browsers */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&h=900&fit=crop&q=80)' }}
+      />
+      <div className="absolute inset-0 bg-[var(--color-bg-primary)]/80" />
+
       {/* Spline 3D robot — covers entire hero so mouse tracking works everywhere */}
       <div className="absolute inset-0">
         <SplineScene
