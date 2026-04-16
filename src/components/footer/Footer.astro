@@ -56,10 +56,11 @@ import { siteConfig } from '../../data/site';
       <div>
         <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Stay Updated</h4>
         <p class="text-sm text-text-muted mb-4">Get IT security tips and industry insights delivered monthly.</p>
-        <form class="flex gap-2" onsubmit="return false;">
+        <form id="footer-newsletter" class="flex gap-2">
           <input
             type="email"
             placeholder="you@company.com"
+            required
             class="flex-1 min-w-0 px-3 py-2 text-sm bg-bg-card border border-border rounded-md text-white placeholder:text-text-muted focus:outline-none focus:border-accent-cyan/50 transition-colors"
           />
           <button
@@ -69,6 +70,7 @@ import { siteConfig } from '../../data/site';
             Join
           </button>
         </form>
+        <p id="footer-newsletter-success" class="hidden mt-2 text-success text-xs font-medium">You're subscribed!</p>
       </div>
     </div>
 
@@ -83,3 +85,13 @@ import { siteConfig } from '../../data/site';
     </div>
   </div>
 </footer>
+
+<script>
+  const footerForm = document.getElementById('footer-newsletter') as HTMLFormElement;
+  const footerSuccess = document.getElementById('footer-newsletter-success');
+  footerForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    footerForm.classList.add('hidden');
+    if (footerSuccess) footerSuccess.classList.remove('hidden');
+  });
+</script>

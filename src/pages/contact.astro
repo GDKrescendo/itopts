@@ -39,7 +39,7 @@ const employeeOptions = [
         <div class="lg:col-span-3">
           <Card hover={false} borderAccent="none" class="p-8">
             <h2 class="font-heading font-bold text-xl text-white mb-6">Send Us a Message</h2>
-            <form class="space-y-5" onsubmit="return false;">
+            <form id="contact-form" class="space-y-5">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Input label="Full Name" name="name" placeholder="John Smith" required />
                 <Input label="Company" name="company" placeholder="Acme Corp" />
@@ -53,6 +53,9 @@ const employeeOptions = [
               <Button variant="primary" size="lg" type="submit" class="w-full sm:w-auto">
                 Send Message
               </Button>
+              <div id="contact-success" class="hidden mt-4 p-4 rounded-lg bg-success/10 border border-success/20">
+                <p class="text-success text-sm font-medium">Thanks for reaching out! We'll respond within 2 business hours.</p>
+              </div>
             </form>
           </Card>
         </div>
@@ -70,8 +73,8 @@ const employeeOptions = [
                 <p class="text-xs text-text-muted">Book a free 30-minute consultation</p>
               </div>
             </div>
-            <Button variant="secondary" size="md" href="#" class="w-full">
-              Book a Call
+            <Button variant="secondary" size="md" href="tel:5612894687" class="w-full">
+              Call (561) 289-4687
             </Button>
           </Card>
 
@@ -130,4 +133,17 @@ const employeeOptions = [
   import { fadeUp } from '../scripts/scroll-animations';
   fadeUp('.lg\\:col-span-3');
   fadeUp('.lg\\:col-span-2');
+
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('contact-success');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.querySelectorAll('input, textarea, select, button[type="submit"]').forEach((el) => {
+      (el as HTMLInputElement).disabled = true;
+    });
+    if (success) {
+      success.classList.remove('hidden');
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
 </script>

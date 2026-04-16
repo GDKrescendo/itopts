@@ -24,12 +24,12 @@ import { blogPosts } from '../data/blog-posts';
     <div class="container-site">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 blog-grid">
         {blogPosts.map((post) => (
-          <a href="#" class="group block">
+          <div class="group block cursor-default">
             <Card borderAccent="cyan" class="h-full flex flex-col">
               <!-- Thumbnail placeholder -->
               <div class="aspect-video rounded-lg bg-bg-primary border border-border mb-5 flex items-center justify-center overflow-hidden">
                 <div class="text-center">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-cyan)" stroke-width="1" class="mx-auto opacity-30">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-cyan)" stroke-width="1" class="mx-auto opacity-30" aria-hidden="true">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/>
                   </svg>
                 </div>
@@ -50,13 +50,12 @@ import { blogPosts } from '../data/blog-posts';
 
               <div class="mt-5 pt-4 border-t border-border flex items-center justify-between">
                 <span class="text-xs text-text-muted">{post.date}</span>
-                <span class="text-xs font-medium text-accent-cyan group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                  Read More
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+                <span class="text-xs font-medium text-accent-cyan inline-flex items-center gap-1">
+                  Coming Soon
                 </span>
               </div>
             </Card>
-          </a>
+          </div>
         ))}
       </div>
     </div>
@@ -69,10 +68,11 @@ import { blogPosts } from '../data/blog-posts';
       <p class="mt-4 text-text-muted text-lg max-w-lg mx-auto">
         Subscribe to our monthly newsletter for security tips, automation ideas, and industry updates.
       </p>
-      <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return false;">
+      <form id="blog-newsletter" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
         <input
           type="email"
           placeholder="you@company.com"
+          required
           class="flex-1 px-4 py-3 text-sm bg-bg-card border border-border rounded-md text-white placeholder:text-text-muted focus:outline-none focus:border-accent-cyan/50 transition-colors"
         />
         <button
@@ -82,11 +82,20 @@ import { blogPosts } from '../data/blog-posts';
           Subscribe
         </button>
       </form>
+      <p id="blog-newsletter-success" class="hidden mt-4 text-success text-sm font-medium">You're subscribed! Check your inbox soon.</p>
     </div>
   </section>
 </PageLayout>
 
 <script>
   import { staggerCards } from '../scripts/scroll-animations';
-  staggerCards('#blog-posts .blog-grid', ':scope > a');
+  staggerCards('#blog-posts .blog-grid', ':scope > div');
+
+  const blogForm = document.getElementById('blog-newsletter') as HTMLFormElement;
+  const blogSuccess = document.getElementById('blog-newsletter-success');
+  blogForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    blogForm.classList.add('hidden');
+    if (blogSuccess) blogSuccess.classList.remove('hidden');
+  });
 </script>

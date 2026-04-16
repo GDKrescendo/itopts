@@ -23,3 +23,5 @@ _temp_init/
 
 # debug
 npm-debug.log*
+
+.vercel
