@@ -73,8 +73,8 @@ const employeeOptions = [
                 <p class="text-xs text-text-muted">Book a free 30-minute consultation</p>
               </div>
             </div>
-            <Button variant="secondary" size="md" href="tel:5612894687" class="w-full">
-              Call (561) 289-4687
+            <Button variant="secondary" size="md" href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} class="w-full">
+              Call {siteConfig.phone}
             </Button>
           </Card>
 
